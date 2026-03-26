@@ -1,0 +1,9 @@
+{
+  "welcome_channel": "general",
+  "welcome_message": "Willkommen {user} auf dem Server! 🎉",
+  "verified_role": "Verified",
+  "selectable_roles": ["Gamer", "Artist", "Coder", "Music Lover"],
+  "verification_enabled": true,
+  "log_channel": "logs",
+  "enable_welcome": false
+}
