@@ -9,6 +9,7 @@ import {
 import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, resolve } from "path";
+import { createServer } from "http";
 import "dotenv/config";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -32,6 +33,15 @@ if (!TOKEN) {
   console.error("Error: DISCORD_TOKEN is not set.");
   process.exit(1);
 }
+
+// Health check server so Railway doesn't kill the process
+const PORT = parseInt(process.env.PORT ?? "3000", 10);
+createServer((_req, res) => {
+  res.writeHead(200);
+  res.end("Bot is running");
+}).listen(PORT, () => {
+  console.log(`Health check server listening on port ${PORT}`);
+});
 
 const intents = [
   GatewayIntentBits.Guilds,
